@@ -1,0 +1,82 @@
+﻿<Window x:Class="Kursovay.StaffDepartament"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovay"
+        mc:Ignorable="d"
+        Title="Пользователь: Отдел кадров" Height="560" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Сотрудники">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False"
+                  CanUserResizeColumns="False" 
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False" 
+                  x:Name="DataGridStaff"
+                  Margin="0,0,0,240">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Binding="{Binding Id}" 
+                                    IsReadOnly="True"  Width="*" Header="Табельный номер"/>
+                            <DataGridTextColumn Binding="{Binding Surname}" 
+                                    IsReadOnly="True" Width="*" Header="Фамилия"/>
+                            <DataGridTextColumn Binding="{Binding Name}" 
+                                    IsReadOnly="True" Width="*" Header="Имя"/>
+                            <DataGridTextColumn Binding="{Binding Patronymic}" 
+                                    IsReadOnly="True" Width="*" Header="Отчество"/>
+                            <DataGridTextColumn Binding="{Binding Post}" 
+                                    IsReadOnly="True" Width="*" Header="Должность"/>
+                            <DataGridTextColumn Binding="{Binding Salary}" 
+                                    IsReadOnly="True"  Width="*" Header="Зарплата"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Margin="10,170,0,0">
+
+                        <StackPanel Orientation="Horizontal" Margin="5,115,0,0">
+                            <TextBlock Margin="0,0,111,0" Text="Фамилия:"/>
+                            <TextBlock Margin="100,0,111,0" Text="Должность:"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,2">
+                            <TextBox Text ="{Binding ElementName=DataGridStaff,Path=SelectedItem.Surname,Mode=OneWay}" 
+                         x:Name="Surname" Width="160" PreviewTextInput="Validation_BlockNumbers"/>
+                            <ComboBox Width="160" Text ="{Binding ElementName=DataGridStaff,Path=SelectedItem.Post,Mode=OneWay}"
+                         x:Name="Post" Margin="102,0,0,0" Height="18">
+                                <ComboBoxItem Content="Работник"/>
+                                <ComboBoxItem Content="Инструктор"/>
+                                <ComboBoxItem Content="Менеджер"/>
+                                <ComboBoxItem Content="Ассистент"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,12,0,2">
+                            <TextBlock Margin="0,0,46.5,0" Text="Имя:"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,2">
+                            <TextBox Text ="{Binding ElementName=DataGridStaff,Path=SelectedItem.Name,Mode=OneWay}" 
+                         x:Name="StaffName" Width="160" PreviewTextInput="Validation_BlockNumbers"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,12,0,2">
+                            <TextBlock Margin="0,0,106,0" Text="Отчество:"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,2">
+                            <TextBox Text ="{Binding ElementName=DataGridStaff,Path=SelectedItem.Patronymic,Mode=OneWay}"
+                         x:Name="Patronymic" Width="160" PreviewTextInput="Validation_BlockNumbers"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,25,0,0">
+                            <Button Width="70" Height="30" Margin="250,0,0,0" Content="Добавить" Click="StaffAdd_Button"/>
+                            <Button Width="70" Margin="50,0,0,0"  Content="Изменить" Click="StaffChange_Button"/>
+                            <Button Width="70" Margin="50,0,0,0"  Content="Удалить" Click="StaffDelete_Button"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
